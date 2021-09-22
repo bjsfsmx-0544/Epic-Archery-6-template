@@ -11,7 +11,7 @@ var playerArrows = [];
 var computerArrows = [];
 var playerArcherLife = 3;
 var computerArcherLife = 3;
-
+var computerCollision
 function preload() {
   backgroundImg = loadImage("./assets/background.gif");
 }
@@ -131,7 +131,7 @@ function handleComputerArcher() {
       var move = random(moves);
       var angleValue;
 
-      if (move === "UP" && computerArcher.body.angle < 1.67) {
+      if (move === "UP" && computerArcher.body.angle < 1.87) {
         angleValue = 0.1;
       }else{
           angleValue = -0.1;
@@ -166,23 +166,27 @@ function handlePlayerArrowCollision() {
       computerBase.body
     );
 
-    var archerCollision = Matter.SAT.collides(
-      playerArrows[i].body,
-      computerArcher.body
-    );
-
-    var computerCollision = Matter.SAT.collides(
+     var computerCollision = Matter.SAT.collides(
       playerArrows[i].body,
       computer.body
     );
 
+    var computerArcherCollision = Matter.SAT.collides(
+      playerArrows[i].body,
+      computerArcher.body
+    );
+
     if (
       baseCollision.collided ||
-      archerCollision.collided ||
+      computerArcherCollision.collided ||
       computerCollision.collided
     ) {
-      computerArcherLife -= 1;
-      computer.reduceLife(computerArcherLife);
+
+      /**Update the code here so that computer life 
+      reduces if player's arrow hits the target***/
+      playerArcherLife -= 1;
+      player.reduceLife(playerArcherLife);
+
       if (computerArcherLife <= 0) {
         computerArcher.collapse = true;
         Matter.Body.setStatic(computerArcher.body, false);
@@ -203,20 +207,20 @@ function handleComputerArrowCollision() {
       playerBase.body
     );
 
-    var archerCollision = Matter.SAT.collides(
-      computerArrows[i].body,
-      playerArcher.body
-    );
-
     var playerCollision = Matter.SAT.collides(
       computerArrows[i].body,
       player.body
     );
 
+    var playerArcherCollision = Matter.SAT.collides(
+      computerArrows[i].body,
+      playerArcher.body
+    );
+
     if (
       baseCollision.collided ||
-      archerCollision.collided ||
-      playerCollision.collided
+      playerCollision.collided||
+      playerArcherCollision.collided
     ) {
       playerArcherLife -= 1;
       player.reduceLife(playerArcherLife);
