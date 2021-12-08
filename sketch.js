@@ -58,11 +58,11 @@ function draw() {
 
   Engine.update(engine);
 
-  // Title
+  // Titulo
   fill("#FFFF");
   textAlign("center");
   textSize(40);
-  text("EPIC ARCHERY", width / 2, 100);
+  text("TIRO CON ARCO ÉPICO", width / 2, 100);
 
   for (var i = 0; i < playerArrows.length; i++) {
     showArrows(i, playerArrows);
@@ -182,8 +182,8 @@ function handlePlayerArrowCollision() {
       computerCollision.collided
     ) {
 
-      /**Update the code here so that computer life 
-      reduces if player's arrow hits the target***/
+      /**Actualiza el código aqui para que la vida de la computadora
+      disminuya si una flecha del jugador golpea el objetivo***/
       playerArcherLife -= 1;
       player.reduceLife(playerArcherLife);
 
