@@ -58,7 +58,7 @@ function draw() {
 
   Engine.update(engine);
 
-  // Titulo
+  // Título
   fill("#FFFF");
   textAlign("center");
   textSize(40);
@@ -183,7 +183,7 @@ function handlePlayerArrowCollision() {
     ) {
 
       /**Actualiza el código aqui para que la vida de la computadora
-      disminuya si una flecha del jugador golpea el objetivo***/
+      disminuya si una flecha del jugador golpea al objetivo***/
       playerArcherLife -= 1;
       player.reduceLife(playerArcherLife);
 
